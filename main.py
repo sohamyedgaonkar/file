@@ -121,7 +121,10 @@ async def generate_curriculum(input_data: SubjectInput):
         raise HTTPException(status_code=500, detail=str(e))
 
 # Run the FastAPI server
+import os
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))  # Get port from environment variable
+    uvicorn.run(app, host="0.0.0.0", port=port)  # Listen on 0.0.0.0 for external access
+
     
